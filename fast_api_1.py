@@ -1,5 +1,5 @@
 from symbol import parameters
-from fastapi import FastAPI
+from fastapisd import FastAPI
 from  typing import Optional
 
 

@@ -1,10 +1,15 @@
-from fastapi import FastAPI,Query
-from  typing import List, Optional
+from fastapi import FastAPI
+import math
 from pydantic import BaseModel
 from sqlalchemy import Column,String,Integer,Boolean
 
 from database_connection_fastapi2 import Base, engine , SessionLocal
 from sqlalchemy.orm import Session
+
+Base.metadata.create_all(bind=engine)    
+
+app = FastAPI()
+
 
 class User(Base):
     __tablename__ = 'users'
@@ -13,26 +18,22 @@ class User(Base):
     phone = Column(Integer,primary_key=True,index=True)
     
     
-class Userschema(BaseModel):
-    id :int
-    name:str
-    phone:int
-
-    class Config:
-        orm_mode = True
-
-
 def gert_db():
     db = SessionLocal()
     try:
         yield db 
     finally:
         db.close()
+   
+    
+class Userschema(BaseModel):
+    id:int
+    name:str
+    phone:int
 
+    class Config:
+        orm_mode = True
 
-Base.metadata.create_all(bind=engine)    
-
-app = FastAPI()
 
 
 

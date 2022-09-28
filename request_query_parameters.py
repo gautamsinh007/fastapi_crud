@@ -1,6 +1,6 @@
 from lib2to3.pytree import Base
 from symbol import parameters
-from fastapi import FastAPI,Query
+from fastapisd import FastAPI,Query
 from  typing import List, Optional
 from pydantic import BaseModel
 app = FastAPI()
